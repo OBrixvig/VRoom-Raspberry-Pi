@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-In App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 16px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Z-ROOM Check-In</h1>
+    <button id="checkInButton">Check In</button>
+    <div id="status">Not checked in yet</div>
+
+    <script>
+        async function checkIn() {
+            try {
+                const response = await fetch('/check-in', { method: 'POST' });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                document.getElementById('status').innerText = `Check-in successful! Time: ${data.message}`;
+                document.getElementById('status').style.color = 'green'; // Change to green on success
+            } catch (error) {
+                document.getElementById('status').innerText = 'Check-in failed. Please try again.';
+                document.getElementById('status').style.color = 'red'; // Keep red on failure
+                console.error('Error during check-in:', error);
+            }
+        }
+
+        document.getElementById('checkInButton').addEventListener('click', checkIn);
+    </script>
+</body>
+</html>
