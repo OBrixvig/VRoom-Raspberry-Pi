@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check-In App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Z-ROOM Check-In</h1>
     <button id="checkInButton">Check In</button>
     <div id="status">Press Check In to proceed</div>
 
-    <script>
+    <script>    
         function checkIn() {
             const status = document.getElementById('status');
             status.textContent = "Redirecting you...";
             status.style.color = 'green';
             setTimeout(() => {
                 console.log('Redirecting to /indtast-pin');
-                window.location.href = '/indtastpin.html';
+                window.location.href = '/indtast-pin';
             }, 300);
         }
 
