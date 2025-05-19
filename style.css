@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Check in styling */
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+button:hover {
+    background-color: #218838;
+}
+#status {
+    margin-top: 10px;
+    font-size: 16px;
+    color: green;
+    display: block;
+}
+
+/* CSS for pin kode input */
+.pin-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+    margin-top: 20px;
+}
+.pin-input {
+    width:80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+}
+.pin-input:focus {
+    border-color: #007BFF;
+}
+.submit-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
+}
