@@ -12,40 +12,6 @@
             <input type="password" class="pin-input" id="pin" maxlength="4" placeholder="••••" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             <button class="submit-btn" onclick="submitPin()">Submit</button>
             <p id="status" class="error"></p>
-        </div-class> 
-        <script>
-            /*async function submitPin() {
-                const pin = document.getElementById('pin').value;
-                const status = document.getElementById('status');
-
-                try {
-                    const response = await fetch('/validate-pin', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ pin }) 
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Failed to validate PIN');
-                    }
-
-                    const data = await response.json();
-                    if (data.valid) {
-                        status.textContent = "PIN accepted!";
-                        status.style.color = "green";
-                        setTimeout(() => {
-                            window.location.href = '/success'; // Replace with your success page
-                        }, 1000);
-                    } else {
-                        status.textContent = "PIN is incorrect. Please try again.";
-                        status.style.color = "red";
-                    }
-                } catch (error) {
-                    status.textContent = "An error occurred. Please try again.";
-                    status.style.color = "red";
-                    console.error(error);
-                }
-            } */
-        </script> 
+        </div-class>  
     </body>
 </html>
