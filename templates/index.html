@@ -4,24 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check-In App</title>
+    <!-- Henter CSS-styling fra static-mappen -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Z-ROOM Check-In</h1>
+    <!-- Check In-knap -->
     <button id="checkInButton">Check In</button>
+    <!-- Statusbesked vises her -->
     <div id="status">Press Check In to proceed</div>
 
-    <script>    
+    <script>
+        // Funktion der håndterer klik på Check In-knappen
         function checkIn() {
             const status = document.getElementById('status');
+            // Opdaterer statusbesked og farve
             status.textContent = "Redirecting you...";
             status.style.color = 'green';
+            // Venter 300ms og omdirigerer til pinkode-siden
             setTimeout(() => {
                 console.log('Redirecting to /indtast-pin');
                 window.location.href = '/indtast-pin';
             }, 300);
         }
 
+        // Tilføjer event listener til knappen
         document.getElementById('checkInButton').addEventListener('click', checkIn);
     </script>
 </body>

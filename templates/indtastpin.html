@@ -4,18 +4,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Pincode site</title>
+        <!-- Henter CSS-styling fra static-mappen -->
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
         <div class="pin-container">
             <h2>Enter pincode</h2>
+            <!-- Form til pinkodeindtastning -->
             <form id="pinForm" onsubmit="submitPin(event)">
+                <!-- Inputfelt for pinkode, kun tal tilladt -->
                 <input type="password" class="pin-input" id="pin" maxlength="4" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <!-- Hjælpetekst til brugeren -->
                 <div class="input-helper">Only numbers (0-9) are allowed. Pincode must be 4 digits.</div>
+                <!-- Submit-knap -->
                 <button type="submit" class="submit-btn">Submit</button>
+                <!-- Statusbesked og ikon vises her -->
                 <p id="status"><span id="status-icon"></span> <span id="status-text"></span></p>
             </form>
         </div>
+        <!-- Henter JavaScript til pinkodevalidering -->
         <script src="{{ url_for('static', filename='pin.js') }}"></script>
     </body>
 </html>

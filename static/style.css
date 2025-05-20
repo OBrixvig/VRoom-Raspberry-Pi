@@ -1,3 +1,4 @@
+/* Grundopsætning for hele siden */
 body {
     margin: 0;
     height: 100vh;
@@ -10,7 +11,7 @@ body {
     text-align: center;
 }
 
-/* Check in styling */
+/* Styling af Check In-knap */
 button {
     font-size: 18px;
     padding: 10px 20px;
@@ -24,6 +25,8 @@ button {
 button:hover {
     background-color: #218838;
 }
+
+/* Styling af statusbesked */
 #status {
     margin-top: 10px;
     font-size: 16px;
@@ -31,7 +34,7 @@ button:hover {
     display: block;
 }
 
-/* CSS for pin kode input */
+/* Container til pinkode-indtastning */
 .pin-container {
     background-color: white;
     padding: 20px;
@@ -41,6 +44,8 @@ button:hover {
     width: 400px;
     margin-top: 20px;
 }
+
+/* Inputfelt til pinkode */
 .pin-input {
     width:80%;
     padding: 10px;
@@ -51,9 +56,13 @@ button:hover {
     text-align: center;
     outline: none;
 }
+
+/* Fokus-effekt på pinkode input */
 .pin-input:focus {
     border-color: #007BFF;
 }
+
+/* Styling af submit-knap til pinkode */
 .submit-btn {
     background-color: #007BFF;
     color: white;
@@ -66,11 +75,15 @@ button:hover {
 .submit-btn:hover {
     background-color: #0056b3;
 }
+
+/* Styling af fejlbesked */
 .error {
     color: red;
     font-size: 14px;
     margin-top: 10px;
 }
+
+/* Hjælpetekst under inputfeltet */
 .input-helper {
     font-size: 13px;
     color: #555;
