@@ -9,7 +9,7 @@ CORS(app)
 
 # Opretter forbindelsesstreng til SQL Server
 connection_string = (
-    "DRIVER={ODBC Driver 17 for SQL Server};"
+    "DRIVER={ODBC Driver 18 for SQL Server};"
     "SERVER=mssql7.unoeuro.com,1433;"
     "DATABASE=elkg_dk_db_login_service;"
     "UID=elkg_dk;"
@@ -41,7 +41,13 @@ def validate_pin():
         conn = pyodbc.connect(connection_string)
         cursor = conn.cursor()
         # Tjekker om pinkoden findes i dagens booking og tidsinterval
-        query = "SELECT COUNT(*) FROM Booking WHERE PinCode = ? and Date =CONVERT(DATE, GETDATE()) AND Starttime <= convert(TIME, GETDATE()) AND Endtime >= convert(TIME, GETDATE())"
+        query =  """
+            SELECT COUNT(*) FROM Booking 
+            WHERE LTRIM(RTRIM(PinCode)) = ? 
+            AND CAST(Date AS DATE) = CAST(GETDATE() AS DATE) 
+            AND CAST(Starttime AS TIME) <= CAST(GETDATE() AS TIME) 
+            AND CAST(Endtime AS TIME) >= CAST(GETDATE() AS TIME)
+            """
         cursor.execute(query, (pincode,))
         result = cursor.fetchone()
     except Exception as e:
