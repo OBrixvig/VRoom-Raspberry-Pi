@@ -6,6 +6,9 @@
         <title>Pincode site</title>
         <!-- Henter CSS-styling fra static-mappen -->
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+                <!-- Henter JavaScript til pinkodevalidering -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{{ url_for('static', filename='pin.js') }}"></script>
     </head>
     <body>
         <div class="pin-container">
@@ -15,14 +18,12 @@
                 <!-- Inputfelt for pinkode, kun tal tilladt -->
                 <input type="password" class="pin-input" id="pin" maxlength="4" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 <!-- Hjælpetekst til brugeren -->
-                <div class="input-helper">Only numbers (0-9) are allowed. Pincode must be 4 digits.</div>
+                <div class="input-helper">Kun tal (0-9) er tilladt. Pinkoden skal være 4 cifre.</div>
                 <!-- Submit-knap -->
                 <button type="submit" class="submit-btn">Submit</button>
                 <!-- Statusbesked og ikon vises her -->
                 <p id="status"><span id="status-icon"></span> <span id="status-text"></span></p>
             </form>
         </div>
-        <!-- Henter JavaScript til pinkodevalidering -->
-        <script src="{{ url_for('static', filename='pin.js') }}"></script>
     </body>
 </html>

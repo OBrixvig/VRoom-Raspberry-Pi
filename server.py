@@ -33,7 +33,7 @@ def validate_pin():
     pincode = data.get('pincode', '')
     # Tjek at pinkoden er præcis 4 cifre
     if not re.fullmatch(r'\d{4}', pincode):
-        return jsonify({"success": False, "message": "Pincode must be 4 digits."}), 400
+        return jsonify({"success": False, "message": "Pinkoden skal være 4 cifre."}), 400
 
     conn = None
     try:
@@ -60,9 +60,9 @@ def validate_pin():
 
     # Returnerer succes hvis pinkoden findes, ellers fejl
     if result and result[0] > 0:
-        return jsonify({"success": True, "message": "Pincode is korrekt."})
+        return jsonify({"success": True, "message": "Pinkoden er korrekt."})
     else:
-        return jsonify({"success": False, "message": "Incorrect pincode."}), 401
+        return jsonify({"success": False, "message": "Forkert pinkode."}), 401
 
 
 if __name__ == '__main__':
