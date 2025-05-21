@@ -28,7 +28,7 @@ async function submitPin(event) {
 
             Swal.fire({
                 icon: 'success',
-                title: 'Access Granted',
+                title: 'Adgang Givet',
                 text: data.message || 'Pinkoden er godkendt!',
                 confirmButtonText: 'OK',
                 customClass: {
@@ -44,30 +44,18 @@ async function submitPin(event) {
             // Hvis beskeden indeholder "Ikke gyldig", vis SweetAlert for ugyldig pinkode
 
             // Hvis beskeden indeholder "starter kl.", vis SweetAlert for for tidligt
-            if (data.message && data.message.includes("starter kl.")) {
-                Swal.fire({
-                    icon: 'info',
-                    title: 'Too Early',
-                    text: data.message,
-                    confirmButtonText: 'OK',
-                    customClass: {
-                        popup: 'swal2-custom-popup',
-                        confirmButton: 'swal2-custom-confirm'
-                    }
-                });
-            } else {
-                // Ellers vis SweetAlert for almindelig fejl
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Adgang Nægtet',
-                    text: data.message || 'Pinkoden er forkert eller kan ikke bruges.',
-                    confirmButtonText: 'OK',
-                    customClass: {
-                        popup: 'swal2-custom-popup',
-                        confirmButton: 'swal2-custom-confirm'
-                    }
-                });
-            }
+
+            // Ellers vis SweetAlert for almindelig fejl
+            Swal.fire({
+                icon: 'error',
+                title: 'Adgang Nægtet',
+                text: data.message || 'Pinkoden er forkert eller kan ikke bruges.',
+                confirmButtonText: 'OK',
+                customClass: {
+                    popup: 'swal2-custom-popup',
+                    confirmButton: 'swal2-custom-confirm'
+                }
+            });
         }
     } catch (err) {
         statusIcon.textContent = "❌"; // Fejl-ikon
