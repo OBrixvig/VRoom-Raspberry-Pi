@@ -36,10 +36,12 @@ async function submitPin(event) {
                     confirmButton: 'swal2-custom-confirm'
                 }
             });
+
         } else {
             statusIcon.textContent = "❌";
             statusText.textContent = data.message;
             statusText.style.color = "red";
+            // Hvis beskeden indeholder "Ikke gyldig", vis SweetAlert for ugyldig pinkode
 
             // Hvis beskeden indeholder "starter kl.", vis SweetAlert for for tidligt
             if (data.message && data.message.includes("starter kl.")) {
