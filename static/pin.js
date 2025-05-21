@@ -25,10 +25,37 @@ async function submitPin(event) {
             statusIcon.textContent = "✅"; // Viser succes-ikon
             statusText.textContent = data.message; // Succesbesked
             statusText.style.color = "green"; // Grøn tekst
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Adgang Givet',
+                text: data.message || 'Pinkoden er godkendt!',
+                confirmButtonText: 'OK',
+                customClass: {
+                    popup: 'swal2-custom-popup',
+                    confirmButton: 'swal2-custom-confirm'
+                }
+            });
+
         } else {
-            statusIcon.textContent = "❌"; // Fejl-ikon
-            statusText.textContent = data.message; // Fejlbesked fra server
-            statusText.style.color = "red"; // Rød tekst
+            statusIcon.textContent = "❌";
+            statusText.textContent = data.message;
+            statusText.style.color = "red";
+            // Hvis beskeden indeholder "Ikke gyldig", vis SweetAlert for ugyldig pinkode
+
+            // Hvis beskeden indeholder "starter kl.", vis SweetAlert for for tidligt
+
+            // Ellers vis SweetAlert for almindelig fejl
+            Swal.fire({
+                icon: 'error',
+                title: 'Adgang Nægtet',
+                text: data.message || 'Pinkoden er forkert eller kan ikke bruges.',
+                confirmButtonText: 'OK',
+                customClass: {
+                    popup: 'swal2-custom-popup',
+                    confirmButton: 'swal2-custom-confirm'
+                }
+            });
         }
     } catch (err) {
         statusIcon.textContent = "❌"; // Fejl-ikon

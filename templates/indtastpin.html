@@ -6,23 +6,52 @@
         <title>Pincode site</title>
         <!-- Henter CSS-styling fra static-mappen -->
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+                <!-- Henter JavaScript til pinkodevalidering -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{{ url_for('static', filename='pin.js') }}"></script>
     </head>
     <body>
         <div class="pin-container">
             <h2>Enter pincode</h2>
             <!-- Form til pinkodeindtastning -->
-            <form id="pinForm" onsubmit="submitPin(event)">
+            <form id="pinForm" data-start-time="{{ start_time_iso }}" onsubmit="submitPin(event)">
                 <!-- Inputfelt for pinkode, kun tal tilladt -->
                 <input type="password" class="pin-input" id="pin" maxlength="4" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 <!-- Hjælpetekst til brugeren -->
-                <div class="input-helper">Only numbers (0-9) are allowed. Pincode must be 4 digits.</div>
+                <div class="input-helper">Kun tal (0-9) er tilladt. Pinkoden skal være 4 cifre.</div>
                 <!-- Submit-knap -->
                 <button type="submit" class="submit-btn">Submit</button>
                 <!-- Statusbesked og ikon vises her -->
                 <p id="status"><span id="status-icon"></span> <span id="status-text"></span></p>
             </form>
         </div>
-        <!-- Henter JavaScript til pinkodevalidering -->
-        <script src="{{ url_for('static', filename='pin.js') }}"></script>
+        <script>
+            function submitPin(event) {
+                event.preventDefault();
+
+                // Hent starttidspunkt fra data-attribut (ISO-format, fx "2025-05-21T14:00:00Z")
+                const form = document.getElementById('pinForm');
+                const startTimeStr = form.getAttribute('data-start-time');
+                const startTime = new Date(startTimeStr);
+                const now = new Date();
+
+                // Tjek om nuværende tidspunkt er inden for 5 minutter før start
+                const fiveMinutesBefore = new Date(startTime.getTime() - 5 * 60 * 1000);
+
+                if (now < fiveMinutesBefore) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'For tidligt',
+                        text: 'Du kan først tjekke ind 5 minutter før din tid starter.'
+                    });
+                    return false;
+                }
+
+                // Hvis OK, fortsæt med eksisterende pinkodevalidering
+                // ...din eksisterende pinkodevalidering...
+                // Fx: send form data til serveren
+                form.submit();
+            }
+        </script>
     </body>
 </html>
